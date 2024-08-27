@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getchereta/components/box_with_text.dart';
 import 'package:getchereta/components/document_detail_box.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
+import 'package:getchereta/screens/filter_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../measure/consts.dart';
@@ -78,7 +79,12 @@ class TenderDocument extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const BoxWithText(),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.filter))
+                IconButton(onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FilterPage()));
+                }, icon: const Icon(Icons.filter_alt))
               ],
             ),
             SizedBox(

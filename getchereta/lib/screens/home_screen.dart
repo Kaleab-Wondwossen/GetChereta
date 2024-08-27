@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:getchereta/components/dash_detail.dart';
 import 'package:getchereta/components/my_carousel_slider.dart';
@@ -6,6 +8,7 @@ import 'package:getchereta/components/my_drawer.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
 import 'package:getchereta/components/my_recent_tendors.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:getchereta/screens/filter_page.dart';
 import 'package:getchereta/screens/search_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ThemeMode _themeMode = ThemeMode.system;
 
+  // ignore: unused_element
   void _toggleThemeMode(ThemeMode themeMode) {
     setState(() {
       _themeMode = themeMode;
@@ -54,20 +58,20 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
                 onPressed: () {
-                 Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const SearchPage(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return ScaleTransition(
-                        scale: animation,
-                        child: child,
-                      );
-                    },
-                  ),
-                );
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const SearchPage(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return ScaleTransition(
+                          scale: animation,
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
                 },
                 icon: const Icon(
                   Icons.search,
@@ -139,7 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const FilterPage()));
+                      },
                       icon: const Icon(
                         Icons.filter_alt,
                         color: Color.fromRGBO(56, 103, 93, 1.0),

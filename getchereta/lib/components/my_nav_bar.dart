@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/screens/categories_screens/categories_page.dart';
 import 'package:getchereta/screens/home_screen.dart';
+import 'package:getchereta/screens/profile_screens/profile_screen.dart';
+import 'package:getchereta/screens/saved_tenders.dart';
 import 'package:getchereta/screens/tender_document_screen.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -29,16 +31,16 @@ class _MyNavBarState extends State<MyNavBar> {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.toc_outlined),
+          icon: Icon(Icons.checklist),
           label: 'Category',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.file_copy),
+          icon: Icon(Icons.edit),
           label: 'Documents',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.notes),
-          label: 'Notes',
+          icon: Icon(Icons.save),
+          label: 'Saved',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
@@ -64,12 +66,12 @@ class _MyNavBarState extends State<MyNavBar> {
                   context, MaterialPageRoute(builder: (context) => const TenderDocument()));
               break;
             case 3:
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => const ChatScreen()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => const SavedTenders()));
               break;
             case 4:
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => const Profile()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
               break;
           }
         }

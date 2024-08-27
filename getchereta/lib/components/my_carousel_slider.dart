@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:getchereta/screens/login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,7 +20,8 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
   final List<Map<String, String?>> ads = [
     {
       'image': 'images/chereta1.png',
-      'url': 'https://drive.google.com/file/d/1WvOYC4oaKLFB1DApUlZvkE2xVcM8TCSw/view?usp=sharing',
+      'url':
+          'https://drive.google.com/file/d/1WvOYC4oaKLFB1DApUlZvkE2xVcM8TCSw/view?usp=sharing',
       'name': 'Ad 2'
     },
     {
@@ -92,7 +93,10 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
       builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          insetPadding: const EdgeInsets.only(top: 50.0, left: 10.0, right: 10.0), // Adjust this to position at the top
+          insetPadding: const EdgeInsets.only(
+              top: 50.0,
+              left: 10.0,
+              right: 10.0), // Adjust this to position at the top
           child: Stack(
             children: [
               Container(
@@ -118,21 +122,28 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                       SizedBox(height: AppSizes.mediumGap),
+                      SizedBox(height: AppSizes.mediumGap),
                       //const SizedBox(height: 20),
                       ElevatedButton(
-                        style: ButtonStyle(
-                         // backgroundColor: MaterialStateProperty.all(value)<Color?>(const Color.fromRGBO(56, 103, 93, 1.0))
-                        ),
+                        style: const ButtonStyle(
+                            // backgroundColor: MaterialStateProperty.all(value)<Color?>(const Color.fromRGBO(56, 103, 93, 1.0))
+                            ),
                         onPressed: () {
-                          _launchURL(url);
-                          Navigator.of(context).pop();
+                          // _launchURL(url);
+                          // Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()));
                         },
-                        child:  Center(
-                          child: Text('Create Account', style: TextStyle(
-                            color: Colors.black,
-                            fontSize: AppSizes.secondaryFontSize,
-                          ),),
+                        child: Center(
+                          child: Text(
+                            'Create Account',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: AppSizes.secondaryFontSize,
+                            ),
+                          ),
                         ),
                       ),
                     ],
