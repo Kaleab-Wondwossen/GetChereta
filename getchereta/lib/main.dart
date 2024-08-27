@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: lightTheme(),
-        darkTheme: darkTheme(),
-        themeMode: ThemeMode.system,
+        // theme: lightTheme(),
+        // darkTheme: darkTheme(),
+        // themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         home: const HomeScreen());
   }
@@ -43,12 +43,12 @@ class MyApp extends StatelessWidget {
       hintColor: Colors.tealAccent,
       backgroundColor: Colors.black,
       scaffoldBackgroundColor: Colors.black,
-      textTheme: const TextTheme(
-        headline1: TextStyle(fontSize: 24.0, color: Colors.white),
-        bodyText1: TextStyle(fontSize: 14.0, color: Colors.white),
-      ),
-      iconTheme: const IconThemeData(color: Colors.white),
-      buttonTheme: const ButtonThemeData(buttonColor: Colors.teal),
+      // textTheme: const TextTheme(
+      //   headline1: TextStyle(fontSize: 24.0, color: Colors.white),
+      //   bodyText1: TextStyle(fontSize: 14.0, color: Colors.white),
+      // ),
+      // iconTheme: const IconThemeData(color: Colors.white),
+      // buttonTheme: const ButtonThemeData(buttonColor: Colors.teal),
       // Add other dark theme configurations
     );
   }

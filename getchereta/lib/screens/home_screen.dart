@@ -6,6 +6,7 @@ import 'package:getchereta/components/my_drawer.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
 import 'package:getchereta/components/my_recent_tendors.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:getchereta/screens/search_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AppSizes.init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: _themeMode,
+      // themeMode: _themeMode,
       home: Scaffold(
         drawer: const MyDrawer(),
         appBar: AppBar(
@@ -52,7 +53,22 @@ class _HomeScreenState extends State<HomeScreen> {
               width: AppSizes.smallGap,
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                 Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const SearchPage(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        scale: animation,
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+                },
                 icon: const Icon(
                   Icons.search,
                   color: Color.fromRGBO(56, 103, 93, 1.0),
@@ -141,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: AppSizes.mediumGap,
               ),
               const RecentTendors(
-                title: "Invitation for\nBid BID No.\nTREU/001/2017",
+                title: "Invitation for Bid\t\t\t\t\t\t\nBID No.\nTREU/001/2017",
                 imagePath: "images/chereta2.jpg",
                 deadlineText: "Dead Line 12 day\nleft",
                 companyName: "Bank of Abyssinia",

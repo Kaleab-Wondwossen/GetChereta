@@ -24,6 +24,12 @@ class RecentTendors extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(AppSizes.mediumGap)),
         color: const Color.fromRGBO(232, 232, 232, 1),
+        border: Border(
+          left: BorderSide(
+            color: const Color.fromRGBO(56, 103, 93, 1.0),
+            width: AppSizes.smallGap * .3,
+          ),
+        ),
       ),
       width: AppSizes.largeGap * 10.5,
       height: AppSizes.smallGap * 5.5 * 2.5,

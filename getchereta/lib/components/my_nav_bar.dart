@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:getchereta/screens/categories_screens/categories_page.dart';
+import 'package:getchereta/screens/home_screen.dart';
+import 'package:getchereta/screens/tender_document_screen.dart';
 
 class MyNavBar extends StatefulWidget {
   final int index;
@@ -27,11 +30,11 @@ class _MyNavBarState extends State<MyNavBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.toc_outlined),
-          label: 'toDo',
+          label: 'Category',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.file_copy),
-          label: 'Files',
+          label: 'Documents',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.notes),
@@ -49,16 +52,16 @@ class _MyNavBarState extends State<MyNavBar> {
           }
           switch (index) {
             case 0:
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => const HomePage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => const HomeScreen()));
               break;
             case 1:
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => const Events()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => const CategoriesPage()));
               break;
             case 2:
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => const ChatPage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => const TenderDocument()));
               break;
             case 3:
               // Navigator.push(
