@@ -4,6 +4,9 @@ import 'package:getchereta/screens/home_screen.dart';
 import 'package:getchereta/screens/profile_screens/profile_screen.dart';
 import 'package:getchereta/screens/saved_tenders.dart';
 import 'package:getchereta/screens/tender_document_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/themes.dart';
 
 class MyNavBar extends StatefulWidget {
   final int index;
@@ -18,8 +21,11 @@ class MyNavBar extends StatefulWidget {
 class _MyNavBarState extends State<MyNavBar> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context,);
+
     Color unselectedColor = const Color.fromRGBO(56, 103, 93, 1);
-    Color selectedColor = Colors.black;
+    Color selectedColor =
+        themeNotifier.isDarkMode ? Colors.white : Colors.black;
 
     return BottomNavigationBar(
       currentIndex: widget.index,
@@ -54,24 +60,32 @@ class _MyNavBarState extends State<MyNavBar> {
           }
           switch (index) {
             case 0:
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()));
               break;
             case 1:
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => const CategoriesPage()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CategoriesPage()));
               break;
             case 2:
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => const TenderDocument()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TenderDocument()));
               break;
             case 3:
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => const SavedTenders()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SavedTenders()));
               break;
             case 4:
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()));
               break;
           }
         }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:getchereta/components/search_bar.dart';
 import 'package:getchereta/screens/categories_screens/art_category_details.dart';
 import 'package:google_fonts/google_fonts.dart';

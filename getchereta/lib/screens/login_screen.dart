@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:getchereta/provider/themes.dart';
 import 'package:getchereta/screens/home_screen.dart';
 import 'package:getchereta/screens/signup_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return ChangeNotifierProvider(
       create: (_) => PasswordVisibilityProvider(),
       child: Scaffold(
@@ -56,7 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width * 1,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 216, 216, 216),
+                    color: themeNotifier.isDarkMode
+                        ? const Color.fromARGB(255, 52, 52, 52)
+                        : const Color.fromARGB(255, 216, 216, 216),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(AppSizes.mediumGap),
                       topRight: Radius.circular(AppSizes.mediumGap),
@@ -76,10 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'Login',
                             style: GoogleFonts.acme(
-                              fontSize: AppSizes.primaryFontSize * 1.3,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
+                                fontSize: AppSizes.primaryFontSize * 1.3,
+                                fontWeight: FontWeight.bold,
+                                color: themeNotifier.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black),
                           ),
                         ),
                         SizedBox(height: AppSizes.mediumGap * 2),
@@ -92,7 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   AppSizes.mediumGap * .7),
                             ),
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: themeNotifier.isDarkMode
+                                    ? Colors.black
+                                    : Colors.white,
                           ),
                         ),
                         SizedBox(height: AppSizes.mediumGap),
@@ -108,7 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       AppSizes.mediumGap * .7),
                                 ),
                                 filled: true,
-                                fillColor: Colors.white,
+                                fillColor: themeNotifier.isDarkMode
+                                    ? Colors.black
+                                    : Colors.white,
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     provider.isPasswordVisible
@@ -144,10 +155,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen()));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const HomeScreen()));
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -200,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: AppSizes.mediumGap*1.35,
+                          height: AppSizes.mediumGap * 1.35,
                         )
                       ],
                     ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/screens/login_screen.dart';
+import 'package:getchereta/screens/subscription_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:getchereta/measure/consts.dart';
 
-import '../provider/password_visiblity.dart'; // Adjust the path if necessary
+import '../provider/password_visiblity.dart';
+import '../provider/themes.dart'; // Adjust the path if necessary
 
 class SignUpScreen extends StatefulWidget {
   final void Function()? ontap;
@@ -17,6 +19,9 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return ChangeNotifierProvider(
       create: (_) => PasswordVisibilityProvider(),
       child: Scaffold(
@@ -51,12 +56,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width * 1,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 216, 216, 216),
+                    color: themeNotifier.isDarkMode
+                        ? const Color.fromARGB(255, 52, 52, 52)
+                        : const Color.fromARGB(255, 216, 216, 216),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(AppSizes.mediumGap),
                       topRight: Radius.circular(AppSizes.mediumGap),
-                      bottomLeft: const Radius.circular(0), // Sharp bottom-left corner
-                      bottomRight: const Radius.circular(0), // Sharp bottom-right corner
+                      bottomLeft:
+                          const Radius.circular(0), // Sharp bottom-left corner
+                      bottomRight:
+                          const Radius.circular(0), // Sharp bottom-right corner
                     ),
                   ),
                   child: Padding(
@@ -71,7 +80,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: GoogleFonts.acme(
                               fontSize: AppSizes.primaryFontSize,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: themeNotifier.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           ),
                         ),
@@ -81,11 +92,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           decoration: InputDecoration(
                             hintText: 'Enter your full name',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(AppSizes.mediumGap * .7),
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.mediumGap * .7),
                             ),
                             filled: true,
-                            fillColor: Colors.white,
-                            prefixIcon: const Icon(Icons.person, color: Color.fromRGBO(56, 103, 93, 1.0)),
+                            fillColor: themeNotifier.isDarkMode
+                                ? Colors.black
+                                : Colors.white,
+                            prefixIcon: const Icon(Icons.person,
+                                color: Color.fromRGBO(56, 103, 93, 1.0)),
                           ),
                         ),
                         SizedBox(height: AppSizes.smallGap),
@@ -94,11 +109,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           decoration: InputDecoration(
                             hintText: 'Enter your email address',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(AppSizes.mediumGap * .7),
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.mediumGap * .7),
                             ),
                             filled: true,
-                            fillColor: Colors.white,
-                            prefixIcon: const Icon(Icons.email, color: Color.fromRGBO(56, 103, 93, 1.0)),
+                            fillColor: themeNotifier.isDarkMode
+                                ? Colors.black
+                                : Colors.white,
+                            prefixIcon: const Icon(Icons.email,
+                                color: Color.fromRGBO(56, 103, 93, 1.0)),
                           ),
                         ),
                         SizedBox(height: AppSizes.smallGap),
@@ -107,11 +126,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           decoration: InputDecoration(
                             hintText: 'Enter your phone number',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(AppSizes.mediumGap * .7),
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.mediumGap * .7),
                             ),
                             filled: true,
-                            fillColor: Colors.white,
-                            prefixIcon: const Icon(Icons.phone, color: Color.fromRGBO(56, 103, 93, 1.0)),
+                            fillColor: themeNotifier.isDarkMode
+                                ? Colors.black
+                                : Colors.white,
+                            prefixIcon: const Icon(Icons.phone,
+                                color: Color.fromRGBO(56, 103, 93, 1.0)),
                           ),
                         ),
                         SizedBox(height: AppSizes.smallGap),
@@ -123,16 +146,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               decoration: InputDecoration(
                                 hintText: 'Enter Your Password',
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(AppSizes.mediumGap * .7),
+                                  borderRadius: BorderRadius.circular(
+                                      AppSizes.mediumGap * .7),
                                 ),
                                 filled: true,
-                                fillColor: Colors.white,
+                                fillColor: themeNotifier.isDarkMode
+                                    ? Colors.black
+                                    : Colors.white,
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     provider.isPasswordVisible
                                         ? Icons.visibility_off
                                         : Icons.visibility,
-                                    color: const Color.fromRGBO(56, 103, 93, 1.0),
+                                    color:
+                                        const Color.fromRGBO(56, 103, 93, 1.0),
                                   ),
                                   onPressed: provider.togglePasswordVisibility,
                                 ),
@@ -145,14 +172,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Row(
                           children: [
                             Checkbox(
-                              value: false, // Replace with state management logic
+                              value:
+                                  false, // Replace with state management logic
                               onChanged: (value) {},
-                              activeColor: const Color.fromRGBO(56, 103, 93, 1.0),
+                              activeColor:
+                                  const Color.fromRGBO(56, 103, 93, 1.0),
                             ),
                             RichText(
                               text: TextSpan(
                                 text: 'I agree to the ',
-                                style: TextStyle(color: Colors.black, fontSize: AppSizes.tertiaryFontSize),
+                                style: TextStyle(
+                                    color: themeNotifier.isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: AppSizes.tertiaryFontSize),
                                 children: const <TextSpan>[
                                   TextSpan(
                                     text: 'Terms and Conditions',
@@ -171,9 +204,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SubscriptionPages()));
+                            },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(56, 103, 93, 1.0),
+                              backgroundColor:
+                                  const Color.fromRGBO(56, 103, 93, 1.0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -197,7 +237,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             children: [
                               Text(
                                 'Already have an account? ',
-                                style: TextStyle(fontSize: AppSizes.tertiaryFontSize),
+                                style: TextStyle(
+                                    fontSize: AppSizes.tertiaryFontSize),
                               ),
                               GestureDetector(
                                 //onTap: widget.ontap,
@@ -211,7 +252,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Text(
                                   'Sign In',
                                   style: TextStyle(
-                                    color: const Color.fromRGBO(56, 103, 93, 1.0),
+                                    color:
+                                        const Color.fromRGBO(56, 103, 93, 1.0),
                                     fontWeight: FontWeight.bold,
                                     fontSize: AppSizes.tertiaryFontSize,
                                   ),
@@ -220,7 +262,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: AppSizes.smallGap*.3),
+                        SizedBox(height: AppSizes.smallGap * .3),
                       ],
                     ),
                   ),

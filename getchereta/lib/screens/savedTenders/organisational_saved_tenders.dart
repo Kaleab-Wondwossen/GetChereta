@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
 import 'package:getchereta/components/search_bar.dart';
+import 'package:getchereta/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:getchereta/measure/consts.dart'; // Adjust the path if necessary
+import 'package:getchereta/measure/consts.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/themes.dart'; // Adjust the path if necessary
 
 class OrganisationalSavedTenders extends StatefulWidget {
   const OrganisationalSavedTenders({super.key});
@@ -37,6 +41,9 @@ class _OrganisationalSavedTendersState
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -62,7 +69,7 @@ class _OrganisationalSavedTendersState
                 children: [
                   Padding(
                     padding:
-                        EdgeInsets.fromLTRB(0, 0,AppSizes.mediumGap *22, 0),
+                        EdgeInsets.fromLTRB(0, 0, AppSizes.mediumGap * 22, 0),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -87,7 +94,9 @@ class _OrganisationalSavedTendersState
                     style: GoogleFonts.acme(
                       fontSize: AppSizes.secondaryFontSize * 1.3,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: themeNotifier.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                     ),
                   ),
                 ],
@@ -149,7 +158,9 @@ class _OrganisationalSavedTendersState
                             child: Container(
                               padding: EdgeInsets.all(AppSizes.smallGap),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: themeNotifier.isDarkMode
+                                    ? const Color.fromARGB(32, 32, 32, 0)
+                                    : Colors.white,
                                 borderRadius: BorderRadius.circular(
                                     AppSizes.mediumGap * .5),
                                 boxShadow: [
@@ -187,7 +198,9 @@ class _OrganisationalSavedTendersState
                             width: 100,
                             padding: EdgeInsets.all(AppSizes.smallGap),
                             decoration: BoxDecoration(
-                              color: Colors.grey[300],
+                              color: themeNotifier.isDarkMode
+                                  ? const Color.fromRGBO(45, 45, 45, 1)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(
                                   AppSizes.mediumGap * .5),
                             ),

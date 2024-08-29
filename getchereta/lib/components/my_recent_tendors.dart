@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../measure/consts.dart';
+import '../provider/themes.dart';
 
 class RecentTendors extends StatelessWidget {
   final String title;
@@ -19,11 +21,14 @@ class RecentTendors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     AppSizes.init(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(AppSizes.mediumGap)),
-        color: const Color.fromRGBO(232, 232, 232, 1),
+        color: themeNotifier.isDarkMode
+            ? const Color.fromARGB(255, 32, 32, 32)
+            : const Color.fromRGBO(232, 232, 232, 1),
         border: Border(
           left: BorderSide(
             color: const Color.fromRGBO(56, 103, 93, 1.0),
@@ -62,6 +67,7 @@ class RecentTendors extends StatelessWidget {
                         style: TextStyle(
                           fontSize: AppSizes.tertiaryFontSize,
                           fontWeight: FontWeight.bold,
+                          color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                         ),
                       ),
                       Padding(
@@ -123,8 +129,9 @@ class RecentTendors extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromRGBO(198, 198, 198, 1),
+                  decoration:  BoxDecoration(
+                    color: themeNotifier.isDarkMode ? const Color.fromARGB(255, 32, 32, 32) : const Color.fromRGBO(198, 198, 198, 1),
+                    // color: Color.fromRGBO(198, 198, 198, 1),
                   ),
                   height: AppSizes.largeGap * .7,
                   width: AppSizes.largeGap * 6,

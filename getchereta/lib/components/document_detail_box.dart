@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../measure/consts.dart';
+import '../provider/themes.dart';
 
 class DocumentDetailBox extends StatelessWidget {
   const DocumentDetailBox({
@@ -21,12 +23,16 @@ class DocumentDetailBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     AppSizes.init(context);
     return Container(
       margin: EdgeInsets.all(AppSizes.smallGap),
       padding: EdgeInsets.all(AppSizes.smallGap),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 240, 240, 240),
+        // color: const Color.fromARGB(255, 240, 240, 240),
+        color: themeNotifier.isDarkMode ? const Color.fromARGB(255, 32, 32, 32) :const Color.fromARGB(255, 240, 240, 240),
         borderRadius: BorderRadius.circular(15),
         border: Border(
           left: BorderSide(
@@ -61,6 +67,7 @@ class DocumentDetailBox extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: AppSizes.tertiaryFontSize * .8,
+                        color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     SizedBox(height: AppSizes.smallGap * .5),
@@ -81,7 +88,8 @@ class DocumentDetailBox extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(AppSizes.smallGap),
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 255, 255, 255),
+              // color: const Color.fromARGB(255, 255, 255, 255),
+              color: themeNotifier.isDarkMode ? Colors.black : Colors.white,
               borderRadius: BorderRadius.circular(AppSizes.smallGap),
             ),
             child: Row(
@@ -95,13 +103,15 @@ class DocumentDetailBox extends StatelessWidget {
                       'Tender Documents',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: AppSizes.tertiaryFontSize),
+                          fontSize: AppSizes.tertiaryFontSize,
+                          color: themeNotifier.isDarkMode ? Colors.white : Colors.black,),
+                          
                     ),
                     SizedBox(height: AppSizes.smallGap * .6),
                     Text(
                       "Deadline $deadlineText",
                       style:
-                          TextStyle(fontSize: AppSizes.tertiaryFontSize * .8),
+                          TextStyle(fontSize: AppSizes.tertiaryFontSize * .8, color: themeNotifier.isDarkMode ? Colors.white : Colors.black,),
                     ),
                     SizedBox(height: AppSizes.smallGap * .6),
                     Text(
@@ -137,7 +147,7 @@ class DocumentDetailBox extends StatelessWidget {
                     Text(
                       'File size: $size',
                       style:
-                          TextStyle(fontSize: AppSizes.tertiaryFontSize * .8),
+                          TextStyle(fontSize: AppSizes.tertiaryFontSize * .8, color: themeNotifier.isDarkMode ? Colors.white : Colors.black,),
                     ),
                   ],
                 ),

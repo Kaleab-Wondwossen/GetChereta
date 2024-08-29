@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:getchereta/provider/themes.dart';
+import 'package:provider/provider.dart';
 
 class MyTenderCategories extends StatefulWidget {
   final Color backgroundColor;
@@ -28,6 +30,10 @@ class MyTenderCategories extends StatefulWidget {
 class _MyTenderCategoriesState extends State<MyTenderCategories> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
+
     return Container(
       height: AppSizes.largeGap * 5,
       decoration: BoxDecoration(
@@ -48,7 +54,8 @@ class _MyTenderCategoriesState extends State<MyTenderCategories> {
             ),
             Icon(
               widget.icon,
-              color: widget.textColors,
+              color:
+                  themeNotifier.isDarkMode ? Colors.white : widget.textColors,
               weight: AppSizes.largeGap,
             ),
             SizedBox(
@@ -69,7 +76,8 @@ class _MyTenderCategoriesState extends State<MyTenderCategories> {
               style: TextStyle(
                 fontSize: AppSizes.tertiaryFontSize,
                 fontWeight: FontWeight.normal,
-                color: widget.textColors
+                color:
+                    themeNotifier.isDarkMode ? Colors.white : widget.textColors,
               ),
             ),
           ],

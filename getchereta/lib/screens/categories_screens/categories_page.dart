@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
 import 'package:getchereta/components/my_tender_categories.dart';
+import 'package:getchereta/provider/themes.dart';
 import 'package:getchereta/screens/categories_screens/art_category.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../measure/consts.dart';
 import '../search_screen.dart';
@@ -17,6 +19,10 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -70,7 +76,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               style: TextStyle(
                 fontSize: AppSizes.primaryFontSize,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
               ),
             ),
             Text(
@@ -86,13 +92,19 @@ class _CategoriesPageState extends State<CategoriesPage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const ArtCategory()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ArtCategory()));
               },
               child: Padding(
                 padding: EdgeInsets.fromLTRB(
                     AppSizes.largeGap, 0, AppSizes.largeGap, 0),
-                child: const MyTenderCategories(),
+                child: MyTenderCategories(
+                  backgroundColor: themeNotifier.isDarkMode
+                      ? const Color.fromARGB(255, 32, 32, 32)
+                      : const Color.fromARGB(255, 216, 216, 216),
+                ),
               ),
             ),
             SizedBox(
@@ -117,10 +129,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
             Padding(
               padding: EdgeInsets.fromLTRB(
                   AppSizes.largeGap, 0, AppSizes.largeGap, 0),
-              child: const MyTenderCategories(
+              child: MyTenderCategories(
                 icon: Icons.agriculture,
                 categoryName: "A G R I C U L T U R E",
                 tenderCount: "2 Tenders",
+                backgroundColor: themeNotifier.isDarkMode
+                      ? const Color.fromARGB(255, 32, 32, 32)
+                      : const Color.fromARGB(255, 216, 216, 216),
               ),
             ),
             SizedBox(

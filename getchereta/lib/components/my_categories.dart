@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:provider/provider.dart';
 
-class CategoriesIcon extends StatelessWidget {
+import '../provider/themes.dart';
+
+class CategoriesIcon extends StatefulWidget {
   const CategoriesIcon({super.key});
 
   @override
+  State<CategoriesIcon> createState() => _CategoriesIconState();
+}
+
+class _CategoriesIconState extends State<CategoriesIcon> {
+  @override
   Widget build(BuildContext context) {
+    // Access the ThemeNotifier instance from the Provider
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding:
-            EdgeInsets.fromLTRB(AppSizes.largeGap, 0, AppSizes.largeGap, 0),
+        padding: EdgeInsets.fromLTRB(
+            AppSizes.largeGap, 0, AppSizes.largeGap, 0),
         child: Row(
           children: [
             Column(
@@ -23,7 +34,7 @@ class CategoriesIcon extends StatelessWidget {
                 Text(
                   "Academic",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                     fontSize: AppSizes.tertiaryFontSize * .85,
                   ),
                 )
@@ -45,7 +56,7 @@ class CategoriesIcon extends StatelessWidget {
                 Text(
                   "Accounting and\nAuditing",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                     fontSize: AppSizes.tertiaryFontSize * .85,
                   ),
                 )
@@ -67,7 +78,7 @@ class CategoriesIcon extends StatelessWidget {
                 Text(
                   "Agriculture and\nFarming",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                     fontSize: AppSizes.tertiaryFontSize * .85,
                   ),
                 )
@@ -89,7 +100,7 @@ class CategoriesIcon extends StatelessWidget {
                 Text(
                   "Air \nTicket",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                     fontSize: AppSizes.tertiaryFontSize * .85,
                   ),
                 )
@@ -114,7 +125,7 @@ class CategoriesIcon extends StatelessWidget {
                 Text(
                   "Finance",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                     fontSize: AppSizes.tertiaryFontSize * .85,
                   ),
                 )

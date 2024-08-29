@@ -4,8 +4,10 @@ import 'package:getchereta/components/my_nav_bar.dart';
 import 'package:getchereta/components/saved_tenders.dart';
 import 'package:getchereta/screens/filter_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../measure/consts.dart';
+import '../provider/themes.dart';
 import 'savedTenders/organisational_saved_tenders.dart';
 
 class SavedTenders extends StatelessWidget {
@@ -13,6 +15,9 @@ class SavedTenders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -36,7 +41,7 @@ class SavedTenders extends StatelessWidget {
               "Saved Tenders",
               style: TextStyle(
                 fontSize: AppSizes.secondaryFontSize * 1.3,
-                color: Colors.black,
+                color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -58,8 +63,7 @@ class SavedTenders extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                const FilterPage()));
+                            builder: (context) => const FilterPage()));
                   },
                   icon: const Icon(
                     Icons.filter_alt,
@@ -83,22 +87,29 @@ class SavedTenders extends StatelessWidget {
             },
             child: Padding(
               padding: EdgeInsets.all(AppSizes.mediumGap * .9),
-              child: const SavedTendersContainers(),
+              child: SavedTendersContainers(
+                backgroundColor: themeNotifier.isDarkMode
+                    ? const Color.fromRGBO(32, 32, 32, 2)
+                    : const Color.fromARGB(255, 232, 232, 232),
+              ),
             ),
           ),
           Padding(
             padding: EdgeInsets.all(AppSizes.mediumGap * .9),
-            child: const SavedTendersContainers(
+            child:  SavedTendersContainers(
               imagePath: "images/chereta1.png",
               category: "Financial  Tenders",
-              backgroundColor: Color.fromARGB(255, 210, 220, 217),
+              backgroundColor:themeNotifier.isDarkMode? const Color.fromARGB(255, 166, 189, 182): const Color.fromARGB(255, 210, 220, 217),
             ),
           ),
           Padding(
             padding: EdgeInsets.all(AppSizes.mediumGap * .9),
-            child: const SavedTendersContainers(
+            child: SavedTendersContainers(
               imagePath: "images/chereta3.jpg",
               category: "Insurance Services",
+              backgroundColor: themeNotifier.isDarkMode
+                  ? const Color.fromRGBO(32, 32, 32, 2)
+                  : const Color.fromARGB(255, 232, 232, 232),
             ),
           )
         ],

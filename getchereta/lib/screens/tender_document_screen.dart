@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:getchereta/components/box_with_text.dart';
 import 'package:getchereta/components/document_detail_box.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
+import 'package:getchereta/provider/themes.dart';
 import 'package:getchereta/screens/filter_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../measure/consts.dart';
 import 'categories_screens/art_category_details.dart';
@@ -14,6 +16,9 @@ class TenderDocument extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -68,7 +73,7 @@ class TenderDocument extends StatelessWidget {
                 style: TextStyle(
                   fontSize: AppSizes.secondaryFontSize,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: themeNotifier.isDarkMode ? Colors.white : Colors.black
                 ),
               ),
             ),

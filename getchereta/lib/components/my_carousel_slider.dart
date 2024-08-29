@@ -1,9 +1,14 @@
+// ignore_for_file: library_private_types_in_public_api, unused_element, avoid_print
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:getchereta/measure/consts.dart';
 import 'package:getchereta/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../provider/themes.dart';
 
 class MyCarouselSlider extends StatefulWidget {
   const MyCarouselSlider({super.key});
@@ -74,6 +79,7 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
         print('Could not launch $url');
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Could not launch $url')),
         );
@@ -87,6 +93,8 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
   }
 
   void _showPopup(BuildContext context, String imagePath, String url) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
+
     showDialog(
       context: context,
       barrierDismissible: true,
@@ -123,14 +131,9 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
                         ),
                       ),
                       SizedBox(height: AppSizes.mediumGap),
-                      //const SizedBox(height: 20),
                       ElevatedButton(
-                        style: const ButtonStyle(
-                            // backgroundColor: MaterialStateProperty.all(value)<Color?>(const Color.fromRGBO(56, 103, 93, 1.0))
-                            ),
+                        style: const ButtonStyle(),
                         onPressed: () {
-                          // _launchURL(url);
-                          // Navigator.of(context).pop();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -140,7 +143,9 @@ class _MyCarouselSliderState extends State<MyCarouselSlider> {
                           child: Text(
                             'Create Account',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: themeNotifier.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                               fontSize: AppSizes.secondaryFontSize,
                             ),
                           ),

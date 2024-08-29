@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/measure/consts.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/themes.dart';
 
 class SavedTendersContainers extends StatefulWidget {
   final String category;
@@ -25,6 +28,9 @@ class SavedTendersContainers extends StatefulWidget {
 class _SavedTendersContainersState extends State<SavedTendersContainers> {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return Container(
       height: AppSizes.largeGap*3,
       decoration: BoxDecoration(
@@ -56,6 +62,7 @@ class _SavedTendersContainersState extends State<SavedTendersContainers> {
                 style: TextStyle(
                   fontSize: AppSizes.secondaryFontSize,
                   fontWeight: FontWeight.bold,
+                  color: themeNotifier.isDarkMode ? Colors.white : Colors.black
                 ),
               ),
               Text(

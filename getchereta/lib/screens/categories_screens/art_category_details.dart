@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/components/my_bid_details.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../measure/consts.dart';
+import '../../provider/themes.dart';
 import '../search_screen.dart';
 
 class ArtCategoryDetails extends StatefulWidget {
@@ -15,6 +17,9 @@ class ArtCategoryDetails extends StatefulWidget {
 class _ArtCategoryDetailsState extends State<ArtCategoryDetails> {
   @override
   Widget build(BuildContext context) {
+     final themeNotifier = Provider.of<ThemeNotifier>(
+      context,
+    );
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -82,7 +87,7 @@ class _ArtCategoryDetailsState extends State<ArtCategoryDetails> {
                 "Tender Details",
                 style: GoogleFonts.acme(
                   fontSize: AppSizes.primaryFontSize,
-                  color: Colors.black,
+                  color: themeNotifier.isDarkMode ? Colors.white: Colors.black,
                 ),
               ),
               SizedBox(
@@ -135,7 +140,7 @@ class _ArtCategoryDetailsState extends State<ArtCategoryDetails> {
                 padding: EdgeInsets.all(AppSizes.mediumGap*1.5),
                 child: Text("Education Development Trust is implementing a project (TARGET - Technical Assistance to Reinforce General Education Quality Improvement Programme for Equity, GEQIP-E) funded by the Foreign and Commonwealth Development Office (FCDO) in Ethiopia. The project provides support to the Ministry of Education (MoE) and Regional Education Bureaus (REBS) to strengthen the delivery of the World Bank GEQIP-E 'Programme for Results' (P4R) aimed at addressing the\"learning crisis\".\n\nEducation Development Trust is seeking a consultancy firm to conduct a final evaluation of the Equitable School Improvement Fund (ESIF) Project implemented in 6 regions of Ethiopia including Afar, Amhara, Benishangul Gumuz, Gambella, Oromiya, and Somali. The overall purpose of this service is to evaluate", style: TextStyle(
                   fontSize: AppSizes.tertiaryFontSize,
-                  color: Colors.black,
+                  color: themeNotifier.isDarkMode ? Colors.white: Colors.black,
                 ),),
               )
             ],

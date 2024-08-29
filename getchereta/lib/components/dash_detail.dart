@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:getchereta/provider/themes.dart';
 
 import '../measure/consts.dart';
 
-class DashDetails extends StatelessWidget {
+class DashDetails extends StatefulWidget {
   const DashDetails({super.key});
 
   @override
+  State<DashDetails> createState() => _DashDetailsState();
+}
+
+class _DashDetailsState extends State<DashDetails> {
+  @override
   Widget build(BuildContext context) {
+    // Access the ThemeNotifier instance from the Provider
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    
     AppSizes.init(context);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSizes.smallGap * 2),
-        color: const Color.fromRGBO(232, 232, 232, 1),
+        color: themeNotifier.isDarkMode
+            ? const Color.fromARGB(255, 32, 32, 32)
+            : const Color.fromRGBO(232, 232, 232, 1),
       ),
-      width: AppSizes.largeGap * 10.5,
       height: AppSizes.smallGap * 5.5,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
