@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:getchereta/components/my_plan_cards.dart';
 import 'package:getchereta/measure/consts.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/themes.dart';
 
 class SubscriptionPages extends StatefulWidget {
   const SubscriptionPages({super.key});

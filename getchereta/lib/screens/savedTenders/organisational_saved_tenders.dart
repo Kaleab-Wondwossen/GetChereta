@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getchereta/components/my_nav_bar.dart';
 import 'package:getchereta/components/search_bar.dart';
-import 'package:getchereta/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:getchereta/measure/consts.dart';
 import 'package:provider/provider.dart';
